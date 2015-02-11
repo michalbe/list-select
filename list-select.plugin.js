@@ -15,8 +15,24 @@
     }, showTime);
   };
 
-  $.fn.list_select = function(){
+  var render = function(els) {
+    var parentElement = $('<div>');
+    var child;
+    parentElement.addClass('list-select');
+
+    els.forEach(function(el) {
+      child = $('<a>');
+      child.text(el);
+      child.appendTo(parentElement);
+    });
+
+    return parentElement;
+  };
+
+  $.fn.list_select = function(elements){
     var input = this;
+
+    this.after(render(elements));
     var listElements = $('.list-select a');
     var filteredListElements;
     input.bind('focus', showList);
@@ -33,14 +49,14 @@
       var inputValue = input.val();
       listElements = $('.list-select a');
       if (!inputValue) {
-        listElements.show().animate({
+        listElements.css({
           opacity: 0.7
-        }, 200);
+        });
       } else {
         filteredListElements = listElements.filter(function(){
           return !($(this).text().match(new RegExp('^' + input.val(), 'i')));
         });
-        
+
         filteredListElements.css({
           opacity: 0.1
         });
@@ -52,4 +68,10 @@
 })(jQuery);
 
 
-$('#main-input').list_select();
+$('#main-input').list_select([
+  "Amsterdam",
+  "New York",
+  "Paris",
+  "San Francisco",
+  "Warsaw"
+]);

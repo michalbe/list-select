@@ -1,10 +1,8 @@
-.list-select {
-  padding: 0;
-  height: 0;
+.bp-list-select {
   overflow: hidden;
 }
 
-.list-select a {
+.bp-list-select a {
   color: #FFF;
   font-weight: 400;
   font-size: 30px;
@@ -14,6 +12,6 @@
   cursor: pointer;
 }
 
-.list-select a:hover {
+.bp-list-select a:hover {
   opacity: 1 !important;
 }

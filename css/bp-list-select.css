@@ -3,20 +3,15 @@
 }
 
 .bp-list-select * {
-  color: #FFF;
   font-weight: 400;
   font-size: 30px;
   margin: 10px;
   opacity: 0.7;
   transition: opacity 0.5s;
   cursor: pointer;
+  display: inline-block;
 }
 
 .bp-list-select *:hover {
   opacity: 1 !important;
-}
-
-
-.dupa {
-  background-color: #F0F;
 }

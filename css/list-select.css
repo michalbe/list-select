@@ -1,5 +1,6 @@
 .list-select {
-  padding: 20px;
+  height: 0;
+  overflow: hidden;
 }
 
 .list-select a {

@@ -31,15 +31,21 @@
 
     input.bind('keyup', function(){
       var inputValue = input.val();
+      listElements = $('.list-select a');
       if (!inputValue) {
-        filteredListElements = listElements;
+        listElements.show().animate({
+          opacity: 0.7
+        }, 200);
       } else {
         filteredListElements = listElements.filter(function(){
-          return $(this).text().match(new RegExp('^' + input.val(), 'i'));
+          return !($(this).text().match(new RegExp('^' + input.val(), 'i')));
+        });
+        
+        filteredListElements.css({
+          opacity: 0.1
         });
       }
-      listElements.hide();
-      filteredListElements.show();
+
     });
   };
 

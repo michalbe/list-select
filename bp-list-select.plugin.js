@@ -53,6 +53,7 @@
 
     var listElements = $('.bp-list-select *');
     var filteredListElements;
+    var visibleElements;
     input.bind('focus', function(){ showList(originalHeight); });
     input.bind('blur', hideList);
     input.bind('click', function(){
@@ -75,8 +76,16 @@
           return !($(this).text().match(new RegExp('^' + input.val(), 'i')));
         });
 
+        visibleElements = listElements.filter(function(){
+          return $(this).text().match(new RegExp('^' + input.val(), 'i'));
+        });
+
         filteredListElements.css({
           opacity: 0.1
+        });
+
+        visibleElements.css({
+          opacity: 0.7
         });
       }
 

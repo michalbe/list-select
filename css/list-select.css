@@ -1,0 +1,19 @@
+.list-select {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.list-select a {
+  color: #FFF;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 10px;
+  opacity: 0.7;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.list-select a:hover {
+  opacity: 1;
+}

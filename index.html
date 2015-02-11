@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>list-select jQuery Plugin</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/list-select.css">
+  <link rel="stylesheet" href="css/main.css">
+  <!-- endinject -->
+</head>
+<body>
+    <div class="jumbotron" style="text-align: center;">
+      <div class="container">
+        <div class="jumbotron__item">
+          <form action="#" class="head-input">
+            <span class="head-input__phrase">I'm going to </span>
+            <input id="main-input" type="text" placeholder="put a city here!" class="head-input__input">
+            <div class="list-select">
+              <a>Amsterdam</a> <a>New York</a> <a>Paris</a> <a>San Francisco</a> <a>Warsaw</a>
+            </div>
+            <button class="head-input__submit">Get it!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+<!-- inject:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="list-select.plugin.js"></script>
+<!-- endinject -->
+</body>
+</html>

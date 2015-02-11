@@ -1,15 +1,15 @@
 (function($){
   var showTime = 300;
 
-  var showList = function() {
-    $('.list-select').animate({
-      height: 60,
+  var showList = function(originalHeight) {
+    $('.bp-list-select').animate({
+      height: originalHeight,
       padding: 10
     }, showTime);
   };
 
-  var hideList = function(){
-    $('.list-select').animate({
+  var hideList = function() {
+    $('.bp-list-select').animate({
       height: 0,
       padding: 0
     }, showTime);
@@ -18,7 +18,7 @@
   var render = function(els) {
     var parentElement = $('<div>');
     var child;
-    parentElement.addClass('list-select');
+    parentElement.addClass('bp-list-select');
 
     els.forEach(function(el) {
       child = $('<a>');
@@ -29,13 +29,21 @@
     return parentElement;
   };
 
-  $.fn.list_select = function(elements){
+  $.fn.list_select = function(elements, options) {
     var input = this;
 
-    this.after(render(elements));
-    var listElements = $('.list-select a');
+    var settings = $.extend({
+      color: "#556b2f",
+      backgroundColor: "white"
+    }, options);
+
+    input.after(render(elements));
+    var originalHeight = $('.bp-list-select').height();
+    hideList();
+
+    var listElements = $('.bp-list-select a');
     var filteredListElements;
-    input.bind('focus', showList);
+    input.bind('focus', function(){ showList(originalHeight); });
     input.bind('blur', hideList);
     input.bind('click', function(){
       $(this).select();
@@ -47,7 +55,7 @@
 
     input.bind('keyup', function(){
       var inputValue = input.val();
-      listElements = $('.list-select a');
+      listElements = $('.bp-list-select a');
       if (!inputValue) {
         listElements.css({
           opacity: 0.7

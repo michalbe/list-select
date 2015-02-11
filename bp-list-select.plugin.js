@@ -3,26 +3,31 @@
 
   var showList = function(originalHeight) {
     $('.bp-list-select').animate({
-      height: originalHeight,
-      padding: 10
+      height: originalHeight
     }, showTime);
   };
 
   var hideList = function() {
     $('.bp-list-select').animate({
       height: 0,
-      padding: 0
     }, showTime);
   };
 
-  var render = function(els) {
+  var render = function(els, settings) {
     var parentElement = $('<div>');
     var child;
     parentElement.addClass('bp-list-select');
 
+    if (settings.parentClass) {
+      parentElement.addClass(settings.parentClass);
+    }
+
     els.forEach(function(el) {
-      child = $('<a>');
+      child = $('<' + settings.listElement + '>');
       child.text(el);
+      if (settings.listElementsClass) {
+        child.addClass(settings.listElementsClass);
+      }
       child.appendTo(parentElement);
     });
 
@@ -33,19 +38,20 @@
     var input = this;
 
     var settings = $.extend({
-      color: "#556b2f",
-      backgroundColor: "white"
+      listElement: 'a',
+      parentClass: '',
+      listElementsClass: ''
     }, options);
 
-    var renderedList = render(elements);
+    var renderedList = render(elements, settings);
     input.after(renderedList);
     var originalHeight = renderedList.height();
-    
+
     renderedList.css({
       height: 0
     });
 
-    var listElements = $('.bp-list-select a');
+    var listElements = $('.bp-list-select *');
     var filteredListElements;
     input.bind('focus', function(){ showList(originalHeight); });
     input.bind('blur', hideList);
@@ -59,7 +65,7 @@
 
     input.bind('keyup', function(){
       var inputValue = input.val();
-      listElements = $('.bp-list-select a');
+      listElements = $('.bp-list-select *');
       if (!inputValue) {
         listElements.css({
           opacity: 0.7
@@ -81,9 +87,21 @@
 
 
 $('#main-input').list_select([
+  "Zagreb",
+  "London",
+  "Mexico City",
+  "Kilimanjaro",
+  "Bali",
+  "Madrid",
+  "Prague",
+  "Sydney",
+  "Taipei",
+  "Tokyo",
+  "Beijing",
+  "Berlin",
   "Amsterdam",
   "New York",
   "Paris",
   "San Francisco",
   "Warsaw"
-]);
+].sort());

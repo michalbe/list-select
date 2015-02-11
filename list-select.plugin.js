@@ -1,15 +1,24 @@
 (function($){
   $.fn.list_select = function(){
     return this.each(function(){
-      $(this).bind('click', function() {
-        console.log('elo!');
+      var input = $(this);
+      input.bind('focus', function() {
         $('.list-select').animate({
           height: 60,
           padding: 10
         }, 700);
       });
+
+      input.bind('blur', function(){
+        $('.list-select').animate({
+          height: 0,
+          padding: 0
+        }, 700);
+      })
     });
-  }
+  };
+
+  
 })(jQuery);
 
 

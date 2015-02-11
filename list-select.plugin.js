@@ -17,18 +17,29 @@
 
   $.fn.list_select = function(){
     var input = this;
+    var listElements = $('.list-select a');
+    var filteredListElements;
     input.bind('focus', showList);
     input.bind('blur', hideList);
     input.bind('click', function(){
       $(this).select();
     });
 
-    $('.list-select a').bind('click', function(){
+    listElements.bind('click', function(){
       input.val($(this).text());
     });
 
-    input.bind('keypress', function(){
-
+    input.bind('keyup', function(){
+      var inputValue = input.val();
+      if (!inputValue) {
+        filteredListElements = listElements;
+      } else {
+        filteredListElements = listElements.filter(function(){
+          return $(this).text().match(new RegExp('^' + input.val(), 'i'));
+        });
+      }
+      listElements.hide();
+      filteredListElements.show();
     });
   };
 

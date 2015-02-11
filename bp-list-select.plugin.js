@@ -37,9 +37,13 @@
       backgroundColor: "white"
     }, options);
 
-    input.after(render(elements));
-    var originalHeight = $('.bp-list-select').height();
-    hideList();
+    var renderedList = render(elements);
+    input.after(renderedList);
+    var originalHeight = renderedList.height();
+    
+    renderedList.css({
+      height: 0
+    });
 
     var listElements = $('.bp-list-select a');
     var filteredListElements;

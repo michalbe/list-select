@@ -1,12 +1,12 @@
 (function($){
   $.fn.list_select = function(){
     return this.each(function(){
-      $(this).bind('click', function(){
+      $(this).bind('click', function() {
         console.log('elo!');
         $('.list-select').animate({
-          height: "toggle",
+          height: 60,
           padding: 10
-        }, 1);
+        }, 700);
       });
     });
   }

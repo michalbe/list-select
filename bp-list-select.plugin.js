@@ -3,15 +3,13 @@
 
   var showList = function(originalHeight) {
     $('.bp-list-select').animate({
-      height: originalHeight,
-      padding: 10
+      height: originalHeight
     }, showTime);
   };
 
   var hideList = function() {
     $('.bp-list-select').animate({
       height: 0,
-      padding: 0
     }, showTime);
   };
 
@@ -20,9 +18,16 @@
     var child;
     parentElement.addClass('bp-list-select');
 
+    if (settings.parentClass) {
+      parentElement.addClass(settings.parentClass);
+    }
+
     els.forEach(function(el) {
       child = $('<' + settings.listElement + '>');
       child.text(el);
+      if (settings.listElementsClass) {
+        child.addClass(settings.listElementsClass);
+      }
       child.appendTo(parentElement);
     });
 
@@ -34,7 +39,8 @@
 
     var settings = $.extend({
       listElement: 'a',
-      backgroundColor: "white"
+      parentClass: '',
+      listElementsClass: ''
     }, options);
 
     var renderedList = render(elements, settings);
@@ -81,10 +87,21 @@
 
 
 $('#main-input').list_select([
+  "Zagreb",
+  "London",
+  "Mexico City",
+  "Kilimanjaro",
+  "Bali",
+  "Madrid",
+  "Prague",
+  "Sydney",
+  "Taipei",
+  "Tokyo",
+  "Beijing",
+  "Berlin",
   "Amsterdam",
   "New York",
   "Paris",
   "San Francisco",
   "Warsaw"
-],
-{listElement: 'a'});
+].sort());

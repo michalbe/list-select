@@ -24,11 +24,20 @@ module('bpListSelect UI tests',{
       $('<div><input type="text" id="main-input"></div>')
     );
     this.$el = $('#main-input');
+
+    // and initialize it
     this.$el.bpListSelect(this.listElements);
     this.$bpListSelect = this.$qf.find('.bp-list-select');
 
   },
-  listElements: ['machame', 'shira', 'barranco', 'barafu', 'mweka', 'mweka gate'],
+  listElements: [
+    'machame',
+    'shira',
+    'barranco',
+    'barafu',
+    'mweka',
+    'mweka gate'
+  ],
   showTime: 700
 });
 
@@ -49,6 +58,8 @@ test('list shows and hides', function(assert) {
   var that = this;
   that.$el.focus();
 
+  // I know it's ugly, but since there is an animation going on, we
+  // stuck with timeout-spaghetti
   setTimeout(function() {
     ok(
       that.$bpListSelect.height() > 0,
@@ -67,6 +78,8 @@ test('list shows and hides', function(assert) {
 });
 
 test('highlighting elements', function(){
+  // we change the value of the input and then run 'keyup' event to
+  // simulate writing on a keyboard
   this.$el.val('machame');
   this.$el.keyup();
   equal(
@@ -99,6 +112,7 @@ test('highlighting elements', function(){
 test('click on the element to change input value', function() {
   var singleElement = this.$bpListSelect.find(':first-child');
   singleElement.click();
+
   equal(
     this.$el.val(), singleElement.text(),
     'input should have element\'s value'

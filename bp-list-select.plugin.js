@@ -15,13 +15,13 @@
     }, showTime);
   };
 
-  var render = function(els) {
+  var render = function(els, settings) {
     var parentElement = $('<div>');
     var child;
     parentElement.addClass('bp-list-select');
 
     els.forEach(function(el) {
-      child = $('<a>');
+      child = $('<' + settings.listElement + '>');
       child.text(el);
       child.appendTo(parentElement);
     });
@@ -33,19 +33,19 @@
     var input = this;
 
     var settings = $.extend({
-      color: "#556b2f",
+      listElement: 'a',
       backgroundColor: "white"
     }, options);
 
-    var renderedList = render(elements);
+    var renderedList = render(elements, settings);
     input.after(renderedList);
     var originalHeight = renderedList.height();
-    
+
     renderedList.css({
       height: 0
     });
 
-    var listElements = $('.bp-list-select a');
+    var listElements = $('.bp-list-select *');
     var filteredListElements;
     input.bind('focus', function(){ showList(originalHeight); });
     input.bind('blur', hideList);
@@ -59,7 +59,7 @@
 
     input.bind('keyup', function(){
       var inputValue = input.val();
-      listElements = $('.bp-list-select a');
+      listElements = $('.bp-list-select *');
       if (!inputValue) {
         listElements.css({
           opacity: 0.7
@@ -86,4 +86,5 @@ $('#main-input').list_select([
   "Paris",
   "San Francisco",
   "Warsaw"
-]);
+],
+{listElement: 'a'});

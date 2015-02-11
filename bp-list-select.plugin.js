@@ -40,6 +40,8 @@
       // ... make the text content of the node equal to the
       // list element...
       child.text(el);
+      child.addClass('bp-active');
+
       // ... add custom classes to the element if needed...
       if (settings.listElementsClass) {
         child.addClass(settings.listElementsClass);
@@ -89,35 +91,33 @@
     var visibleElements;
 
     // set listeners for list container visibility
-    input.bind('focus', function() {
+    input.on('focus', function() {
       showList(originalHeight);
     });
-    input.bind('blur', hideList);
+    input.on('blur', hideList);
 
     // When input will be clicked, all the text in there
     // should be selected so no additional actions are
     // required to enter the new item's name
-    input.bind('click', function() {
+    input.on('click', function() {
       $(this).select();
     });
 
     // when any of the list elements will be clicked, put it's
     // value to the input
-    listElements.bind('click', function() {
+    listElements.on('click', function() {
       input.val($(this).text());
     });
 
     // with every letter putted in the input, list elements
     // should be filtered and only those that match should be visible
-    input.bind('keyup', function() {
+    input.on('keyup', function() {
       var inputValue = input.val();
       listElements = $('.bp-list-select *');
 
       // if input is empty, show all the elements...
       if (!inputValue) {
-        listElements.css({
-          opacity: 0.7
-        });
+        listElements.addClass('bp-active');
       } else {
         // ...in other case...
         // assign all the elements that don't match the patter
@@ -132,16 +132,12 @@
         });
 
         // hide elements that don't match the input value
-        filteredListElements.css({
-          opacity: 0.1
-        });
+        filteredListElements.removeClass('bp-active');
 
         // show the rest. This is needed because whenever the character
         // is removed from the input, some elements that were hidden
         // already can now match
-        visibleElements.css({
-          opacity: 0.7
-        });
+        visibleElements.addClass('bp-active');
       }
 
     });

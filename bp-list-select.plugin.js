@@ -34,7 +34,7 @@
     return parentElement;
   };
 
-  $.fn.list_select = function(elements, options) {
+  $.fn.bpListSelect = function(elements, options) {
     var input = this;
 
     var settings = $.extend({
@@ -93,24 +93,3 @@
   };
 
 })(jQuery);
-
-
-$('#main-input').list_select([
-  "Zagreb",
-  "London",
-  "Mexico City",
-  "Kilimanjaro",
-  "Bali",
-  "Madrid",
-  "Prague",
-  "Sydney",
-  "Taipei",
-  "Tokyo",
-  "Beijing",
-  "Berlin",
-  "Amsterdam",
-  "New York",
-  "Paris",
-  "San Francisco",
-  "Warsaw"
-].sort());

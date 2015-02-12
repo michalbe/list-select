@@ -118,3 +118,26 @@ test('click on the element to change input value', function() {
     'input should have element\'s value'
   );
 });
+
+test('proper element should be highlighted afteng clicked ', function() {
+  this.$el.val('ba');
+  this.$el.keyup();
+
+  equal(
+    this.$bpListSelect.find('.bp-active').length, 2,
+    'two elements should be active at the beginning'
+  );
+
+  var singleElement = this.$bpListSelect.find(':first-child'); //'machame
+  singleElement.click();
+
+  equal(
+    this.$el.val(), singleElement.text(),
+    'input should have element\'s value'
+  );
+
+  equal(
+    this.$bpListSelect.find('.bp-active').length, 1,
+    'one element should be active'
+  );
+});

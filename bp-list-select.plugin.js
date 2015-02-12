@@ -103,10 +103,15 @@
       $(this).select();
     });
 
-    // when any of the list elements will be clicked, put it's
-    // value to the input
     listElements.on('click', function() {
-      input.val($(this).text());
+      var selectedElement = $(this);
+      // when any of the list elements will be clicked, put it's
+      // value to the input..,
+      input.val(selectedElement.text());
+      // ... and highlight should be set to only this element
+      // (Issue #34 on Github)
+      listElements.removeClass('bp-active');
+      selectedElement.addClass('bp-active');
     });
 
     // with every letter putted in the input, list elements

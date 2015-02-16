@@ -112,6 +112,10 @@
       // (Issue #34 on Github)
       listElements.removeClass('bp-active');
       selectedElement.addClass('bp-active');
+
+      // And emit an event...
+      // (Issue #39 on Github)
+      $(window).trigger('element-selected', [selectedElement.text()]);
     });
 
     // with every letter putted in the input, list elements

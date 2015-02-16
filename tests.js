@@ -141,3 +141,14 @@ test('proper element should be highlighted afteng clicked ', function() {
     'one element should be active'
   );
 });
+
+test('proper event should be emited', function(assert){
+  var done = assert.async();
+  $(window).on('element-selected', function(event, value){
+    equal(value, 'machame', 'proper data should be sent with the event');
+    done();
+  });
+
+  var singleElement = this.$bpListSelect.find(':first-child');
+  singleElement.click();
+});
